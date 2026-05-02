@@ -41,6 +41,7 @@ Total teaching load
 Total office hours
 Validation results for each rule
 Final summary (VALID / INVALID per task)
+
 🚀 How to Run
 chmod +x script.sh
 ./script.sh schedule.txt
