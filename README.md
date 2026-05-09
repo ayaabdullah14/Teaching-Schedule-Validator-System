@@ -3,6 +3,7 @@ Overview
 This project is a shell script-based system designed to analyze and validate a teaching schedule from an input file. It processes time intervals for teaching sessions and office hours, then performs multiple validations to ensure the schedule follows specific academic rules.
 
 ⚙️ Features
+
 Reads schedule data from a text file
 Parses time intervals and activity codes (Teaching / OH)
 Converts time into minutes for calculations
