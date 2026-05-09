@@ -1,48 +1,97 @@
-Overview
+# Teaching Schedule Validator
 
-This project is a shell script-based system designed to analyze and validate a teaching schedule from an input file. It processes time intervals for teaching sessions and office hours, then performs multiple validations to ensure the schedule follows specific academic rules.
+![Language](https://img.shields.io/badge/Language-Bash-4EAA25?style=flat-square&logo=gnu-bash&logoColor=white)
+![Platform](https://img.shields.io/badge/Platform-Linux%20%7C%20macOS-lightgrey?style=flat-square)
+![Status](https://img.shields.io/badge/Status-Complete-success?style=flat-square)
 
-⚙️ Features
+A Bash script that parses and validates a professor's weekly teaching schedule against a defined set of academic compliance rules. Developed as a Systems Programming course project at Birzeit University.
 
-Reads schedule data from a text file
-Parses time intervals and activity codes (Teaching / OH)
-Converts time into minutes for calculations
-Calculates total teaching load and office hours
-Detects time conflicts between sessions
-Checks consecutive teaching rules
-Validates allowed teaching days
-Provides final validation summary
-🧠 Key Functionalities
-1. Load and Parse Data
+---
 
-The script reads each line from the input file and extracts:
+## Table of Contents
 
-Day of the week
-Time intervals
-Activity type (Teaching or Office Hours)
-2. Time Processing
-Converts time format (hh:mm) into minutes
-Calculates duration of each activity
-Handles edge cases where time crosses intervals
-3. Validation Rules
+- [Overview](#overview)
+- [Validation Rules](#validation-rules)
+- [Input Format](#input-format)
+- [Usage](#usage)
+- [Output](#output)
 
-The system checks:
+---
 
-📊 Teaching load is within acceptable range (12–18 hours)
-🕒 Office hours are at least 50% of teaching load
-📅 Teaching occurs on at least 4 different days
-⚠️ No overlapping time conflicts
-🔁 No more than 2 consecutive teaching sessions
-📌 Only valid teaching days are allowed (S, M, T, W, Th)
-📤 Output
+## Overview
 
-The script prints:
+The validator reads a structured schedule file, converts time intervals to minutes for accurate arithmetic, then checks each session against six academic rules. It outputs a per-rule validation result and a final `VALID` / `INVALID` verdict.
 
-Total teaching load
-Total office hours
-Validation results for each rule
-Final summary (VALID / INVALID per task)
+---
 
-🚀 How to Run
-chmod +x script.sh
-./script.sh schedule.txt
+## Validation Rules
+
+| # | Rule | Requirement |
+|---|------|-------------|
+| 1 | Teaching Load | Must be between **12 and 18 hours/week** |
+| 2 | Office Hours | Must be at least **50% of total teaching load** |
+| 3 | Teaching Days | Must span at least **4 different days** |
+| 4 | Time Conflicts | **No overlapping sessions** allowed |
+| 5 | Consecutive Sessions | **No more than 2** back-to-back teaching sessions |
+| 6 | Valid Days | Only `S`, `M`, `T`, `W`, `Th` are permitted |
+
+---
+
+## Input Format
+
+The script expects a plain-text file with one session per line:
+
+```
+DAY  HH:MM-HH:MM  TYPE
+```
+
+Where `TYPE` is either `T` (Teaching) or `OH` (Office Hours).
+
+**Example (`schedule.txt`):**
+
+```
+M   08:00-09:30   T
+M   10:00-11:00   OH
+T   09:00-10:30   T
+W   08:00-09:30   T
+W   11:00-12:00   OH
+Th  09:00-10:30   T
+```
+
+---
+
+## Usage
+
+```bash
+# Make the script executable
+chmod +x firstProject.sh
+
+# Run with a schedule file
+./firstProject.sh schedule.txt
+```
+
+---
+
+## Output
+
+The script prints a detailed validation report followed by a final summary:
+
+```
+Total Teaching Load : 12.0 hours
+Total Office Hours  : 3.0 hours
+
+[Rule 1] Teaching load (12–18h)    : VALID
+[Rule 2] Office hours (≥ 50%)      : VALID
+[Rule 3] Minimum 4 teaching days   : VALID
+[Rule 4] No time conflicts         : VALID
+[Rule 5] No consecutive overload   : VALID
+[Rule 6] Valid teaching days only  : VALID
+
+============================
+Final Result : VALID
+============================
+```
+
+---
+
+> **Course:** Operating Systems & Shell Scripting — Computer Engineering Department, Birzeit University
